@@ -1,29 +1,11 @@
-<2.7.0>
-- Added `BccUtils.Debug` integration
-- Updated all debug calls to colon syntax as part of DebugAPI cleanup
-- Moved core dependencies (`bcc-utils`, `vorp_core`, etc.) into the init file
-- Added water bucket utilization logic
+<3.0.0>
 
-<2.6.0>
-- Added **feather-menu notifications**.
-- Added a **configurable option** to determine whether the player *owns or rents* a house (using `bcc-housing`).
-- Added **configurable lock coordinates** to each plant.
-
-<2.5.1>
-- Fix: Trees are placed on ground when planting
-
-<2.5.0>
-- Fix: Soil removal from inventory after planting
-- Added debug prints
-
-<2.4.4>
-- Fix for jobCheck
-
-<2.4.3>
-- Smell plants
-
-<2.4.2>
-- Fix: Tree would fall into ground after planting
-
-<2.4.1>
-- Update: Can use both clean and dirty water buckets
+- Important: Run sql file to update database.
+- Config files have been updated.
+- Refactored planting, planted-crop, notification, and client synchronization flows.
+- Added mouse-controlled ground placement with automatic walk-to-position behavior.
+- Added selectable fertilizer tiers plus water and fertilizer yield effects.
+- Improved persistent plant synchronization, database timers, prompts, and owner-only blips.
+- Added bcc-water availability checks, rain watering, inventory icons, and safe MariaDB upgrades.
+- Persisted declined watering choices across reconnects and resource restarts.
+- Updated configuration comments, explicit manifest ordering, localization, and documentation.

@@ -7,48 +7,73 @@ Config = {
     -----------------------------------------------------
 
     keys = {
-        fertYes = 0x4CC0E2FE, -- Default: 0x4CC0E2FE / B key
-        fertNo = 0x9959A6F0,  -- Default: 0x9959A6F0 / C key
-        water = 0x4CC0E2FE,   -- Default: 0x4CC0E2FE / B key
+        fertNo = 0x27D1C284,  -- Default: 0x80F28E95 / R key
+        waterNo = 0x4CC0E2FE, -- Default: 0x4CC0E2FE / B key
+        water = 0x80F28E95,   -- Default: 0x80F28E95 / L key
         harvest = 0x4CC0E2FE, -- Default: 0x4CC0E2FE / B key
         destroy = 0x27D1C284, -- Default: 0x27D1C284 / R key
     },
     -----------------------------------------------------
-    Notify = "feather-menu", ----or use vorp-core
-    
+
+    Notify = "feather-menu", -- Use "feather-menu" or "vorp-core"
     -----------------------------------------------------
 
-    -- Item Names from Database
-    fullWaterBucket = {
-        'wateringcan',                      -- bucket of clean water
-        'wateringcan_dirtywater',           -- bucket of dirty water
-    },
-    emptyWaterBucket = 'wateringcan_empty', -- empty water bucket
-    waterBucketUses = 5, -- How many plants a full bucket can water before turning empty
-    -----------------------------------------------------
-
-    -- Script will use the one with the highest time reduction from the player's inventory
+    -- Players can select any fertilizer they currently carry.
     fertilizerSetup = {
         {
-            fertName = 'fertilizer1', -- Item name used in the database
-            fertTimeReduction = 0.25, -- Default: 0.25 / 25% reduction in time
+            fertName = 'fertilizer1',   -- Item name used in the database
+            fertLabel = 'Grade C',
+            selectionKey = 0x4CC0E2FE,  -- B key
+            fertTimeReduction = 0.25,   -- Default: 0.25 / 25% reduction in time
+            fertYieldMultiplier = 1.50, -- 50% more produce
         },
         {
-            fertName = 'fertilizer2', -- Item name used in the database
-            fertTimeReduction = 0.50, -- Default: 0.50 / 50% reduction in time
+            fertName = 'fertilizer2',   -- Item name used in the database
+            fertLabel = 'Grade B',
+            selectionKey = 0x80F28E95,  -- L key
+            fertTimeReduction = 0.50,   -- Default: 0.50 / 50% reduction in time
+            fertYieldMultiplier = 2.00, -- Double produce
         },
         {
-            fertName = 'fertilizer3', -- Item name used in the database
-            fertTimeReduction = 0.75, -- Default: 0.75 / 75% reduction in time
+            fertName = 'fertilizer3',   -- Item name used in the database
+            fertLabel = 'Grade A',
+            selectionKey = 0x760A9C6F,  -- G key
+            fertTimeReduction = 0.75,   -- Default: 0.75 / 75% reduction in time
+            fertYieldMultiplier = 3.00, -- Triple produce
         }
     },
     -----------------------------------------------------
 
+    cropCare = {
+        dryGrowthRate = 0.50,         -- Dry plants grow at 50% of normal speed
+        dryYieldMultiplier = 0.50,    -- Dry harvests produce half yield
+        wateredYieldMultiplier = 1.0, -- Multiplier applied after fertilizer
+        wateredYieldBonus = 1,        -- Extra items for watering during growth
+        minimumYield = 1,             -- Successful harvests return at least this amount
+        statusSyncInterval = 5,       -- Seconds between database timer refreshes while nearby
+    },
+    -----------------------------------------------------
+
+    plantPlacementMarker = {
+        confirmKey = 0x07CE1E61, -- Left mouse / attack
+        cancelKey = 0x156F7119,  -- Backspace
+        distance = 1.00,         -- Initial distance in front of the player
+        maxDistance = 3.0,       -- Maximum distance the marker can move from the player
+        mouseSensitivity = 0.05,-- Mouse placement speed (lower is finer)
+        stoppingDistance = 0.7,  -- How far from the seed the player stops before planting
+        walkSpeed = 1.0,         -- Movement speed while approaching the selected spot
+        walkTimeout = 10000,     -- Cancel if the selected spot cannot be reached in this time (ms)
+        size = 0.35,
+        color = { r = 80, g = 200, b = 120, a = 140 },
+        type = 0x94FDAE17,
+    },
+    -----------------------------------------------------
+
     plantSetup = {
-        lockedToPlanter = false, -- If true, only the player who planted the seed will be able to harvest it
-        maxPlants = 10,          -- Maximum amount of plants a player can have
-        requireHouseOwnership = true, -- If true, planting must occur within one of the player's house plots
-        houseRadiusPadding = 10       -- Extra meters added to the house radius when checking planting range
+        lockedToPlanter = false,       -- If true, only the player who planted the seed will be able to harvest it
+        maxPlants = 10,                -- Maximum amount of plants a player can have
+        requireHouseOwnership = false, -- If true, planting must occur within one of the player's house plots
+        houseRadiusPadding = 10        -- Extra meters added to the house radius when checking planting range
     },
     -----------------------------------------------------
 
@@ -117,6 +142,7 @@ Config = {
             }
         }
     },
+    -----------------------------------------------------
 
     BlipColors = {
         LIGHT_BLUE    = 'BLIP_MODIFIER_MP_COLOR_1',
@@ -151,5 +177,5 @@ Config = {
         LIGHT_RED     = 'BLIP_MODIFIER_MP_COLOR_30',
         LIGHT_YELLOW3 = 'BLIP_MODIFIER_MP_COLOR_31',
         WHITE         = 'BLIP_MODIFIER_MP_COLOR_32'
-    },
+    }
 }

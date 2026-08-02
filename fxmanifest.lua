@@ -5,6 +5,7 @@ rdr3_warning 'I acknowledge that this is a prerelease build of RedM, and I am aw
 lua54 'yes'
 author 'BCC Team'
 description 'bcc-farming'
+version '3.0.0'
 
 shared_scripts {
     'configs/*.lua',
@@ -16,18 +17,20 @@ shared_scripts {
 server_scripts {
     '@oxmysql/lib/MySQL.lua',
     'server/main.lua',
-    'server/services/*.lua'
+    'server/services/notifications.lua',
+    'server/services/usableItems.lua'
 }
 
 client_scripts {
     'client/main.lua',
-    'client/services/*.lua'
+    'client/services/notification.lua',
+    'client/services/planted.lua',
+    'client/services/planting.lua'
 }
 
 dependencies {
     'vorp_character',
     'vorp_inventory',
-    'bcc-utils'
+    'bcc-utils',
+    'bcc-water'
 }
-
-version '2.7.0'
